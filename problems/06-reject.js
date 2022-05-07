@@ -11,17 +11,23 @@ problem.
 Examples:
 
 let isEven = function(n) {
-    return n % 2 === 0;
+  return n % 2 === 0;
 };
 console.log(reject([7, 8, 5, 6, 12, 11], isEven)); // [ 7, 5, 11 ]
 
 let hasA = function(s) {
-    return s.toLowerCase().includes('a');
+  return s.toLowerCase().includes('a');
 };
 console.log(reject(['breadth', 'GRAPH', 'depth', 'height'], hasA)); // [ 'depth', 'height' ]
 *******************************************************************************/
 
-let reject = function () {};
+let reject = function (arr, cb) {
+  const newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (!cb(arr[i])) newArr.push(arr[i]);
+  }
+  return newArr;
+};
 
 /*****************DO NOT MODIFY ANYTHING UNDER THIS  LINE**********************/
 module.exports = reject;

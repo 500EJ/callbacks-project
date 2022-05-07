@@ -11,15 +11,15 @@ all of the given callbacks. In other words, if three callbacks are given then:
 Examples:
 
 let add5 = function(n) {
-    return n + 5;
+  return n + 5;
 };
 
 let half = function(n) {
-    return n / 2;
+  return n / 2;
 };
 
 let square = function(n) {
-    return n * n;
+  return n * n;
 };
 
 console.log(chainMap(25, add5));                // 30
@@ -29,7 +29,13 @@ console.log(chainMap(4, square, half));         // 8
 console.log(chainMap(4, half, square));         // 4
 *******************************************************************************/
 
-let chainMap = function () {};
+let chainMap = function (value, ...cbs) {
+  let val = value;
+  for (let i = 0; i < cbs.length; i++) {
+    value = cbs[i](value);
+  }
+  return value;
+};
 
 /*****************DO NOT MODIFY ANYTHING UNDER THIS  LINE**********************/
 module.exports = chainMap;

@@ -9,29 +9,39 @@ be modified. You can assume that only one suffix of the object will match a word
 Examples:
 
 let cipher1 = {
-    ly: function(word) {
-        return word.slice(0, -1) + 'ee';
-    },
-    ize: function(word) {
-        return word + 'r';
-    }
+  ly: function(word) {
+    return word.slice(0, -1) + 'ee';
+  },
+  ize: function(word) {
+    return word + 'r';
+  }
 };
 console.log(suffixCipher('quietly and gently visualize', cipher1));
 // quietlee and gentlee visualizer
 
 let cipher2 = {
-    tal: function(word) {
-        return word.toUpperCase();
-    },
-    s: function(word) {
-        return word + 'th';
-    }
+  tal: function(word) {
+    return word.toUpperCase();
+  },
+  s: function(word) {
+    return word + 'th';
+  }
 };
 console.log(suffixCipher('incremental progress is very instrumental', cipher2));
 // INCREMENTAL progressth isth very INSTRUMENTAL
 *******************************************************************************/
 
-let suffixCipher = function () {};
+let suffixCipher = function (sentence, obj) {
+  const newSentence = [];
+  const words = sentence.split(" ");
+  for (let i = 0; i < words.length; i++) {
+    for (const ending in obj) {
+      if (words[i].endsWith(ending)) newSentence.push(obj[ending](words[i]));
+    }
+    if (newSentence.length < i + 1) newSentence.push(words[i]);
+  }
+  return newSentence.join(" ");
+};
 
 /*****************DO NOT MODIFY ANYTHING UNDER THIS  LINE**********************/
 module.exports = suffixCipher;

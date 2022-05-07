@@ -42,7 +42,17 @@ AFTER YOU ARE FINISHED WITH THIS PROBLEM, ASK FOR A CODE REVIEW
 - How many times are you calling each callback function?
 *******************************************************************************/
 
-let selectiveMap = function () {};
+let selectiveMap = function (arr, cb1, cb2) {
+  const newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (cb1(arr[i])) {
+      newArr.push(cb2(arr[i]));
+    } else {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
+};
 
 /*****************DO NOT MODIFY ANYTHING UNDER THIS  LINE**********************/
 module.exports = selectiveMap;
